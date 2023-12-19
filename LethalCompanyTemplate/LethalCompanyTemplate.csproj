@@ -1,13 +1,19 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>netstandard2.1</TargetFramework>
+		<TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
         <AssemblyName>LethalCompanyTemplate</AssemblyName>
         <Description>A template for Lethal Company</Description>
         <Version>1.0.0</Version>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
         <LangVersion>latest</LangVersion>
     </PropertyGroup>
+
+	<PropertyGroup>
+		<!-- ONLY EDIT THE FIRST ENTRY IN THIS GROUP, TO UPDATE LETHAL COMPANY INSTALL LOCATION -->
+		<LethalCompanyInstallDir>D:\SteamLibrary\steamapps\common\Lethal Company</LethalCompanyInstallDir>
+		<LethalCompanyDLLFiles>$(LethalCompanyInstallDir)\Lethal Company_Data\Managed</LethalCompanyDLLFiles>
+	</PropertyGroup>
 
     <ItemGroup>
         <PackageReference Include="BepInEx.Analyzers" Version="1.*" PrivateAssets="all"/>
@@ -19,4 +25,13 @@
     <ItemGroup Condition="'$(TargetFramework.TrimEnd(`0123456789`))' == 'net'">
         <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.2" PrivateAssets="all"/>
     </ItemGroup>
+
+	<ItemGroup>
+		<Reference Include="Assembly-Csharp">
+			<HintPath>$(LethalCompanyDLLFiles)\Assembly-CSharp.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine">
+			<HintPath>$(LethalCompanyDLLFiles)\UnityEngine.dll</HintPath>
+		</Reference>
+	</ItemGroup>
 </Project>
